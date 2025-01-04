@@ -5,15 +5,14 @@ const User = require("../models/userModel");
 const cloudinary = require("../utils/cloudinary");
 const Address = require("../models/addressModel");
 const nodemailer = require("nodemailer");
-const Cart = require("../models/cartModel");
-const Product = require("../models/productModel");
+const Cart = require("../models/cartModel"); 
 
 //@desc     Create user
 //@route    POST /api/users
 //@access   Public
 const registerUser = asyncHandler(async (req, res) => {
-  const { firstName, email, password, role } = req.body;
-  if (!firstName || !email || !password) {
+  const {  email, password, role } = req.body;
+  if ( !email || !password) {
     res.status(400);
     throw new Error("Please add all fields");
   }
@@ -32,7 +31,6 @@ const registerUser = asyncHandler(async (req, res) => {
   // create user
   const user = await User.create({
     email,
-    firstName,
     password: hashedPassword,
     role: role || "user",
   });
