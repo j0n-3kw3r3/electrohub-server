@@ -17,7 +17,7 @@ const {
 router.route("/").get(getProducts);
 router.route("/review/:userId/:productId").put( reviewProduct);
 router.route("/").post(upload.array("images"), multipleUpload, protect, admin, createProduct);
-router.route("/:id").put(upload.array("images"), updateProduct);
+router.route("/:id").put(upload.array("images"), protect, admin, updateProduct);
 router.route("/delete/:id").delete(protect, admin, deleteProduct);
 router.route("/:id").get(getProductById);
 
